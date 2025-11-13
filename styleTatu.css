@@ -1,0 +1,140 @@
+:root {
+    --bg: #071226;
+    --sup: #0f1b2b;
+    --muted-sup: #0c1622;
+    --neon: #00d6ff;
+    --acc-1: #8b5cf6;
+    --acc-2: #ff5ca8;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    background-color: var(--bg);
+    color: #fff;
+}
+/* Barra de navegação */
+nav {
+    position: sticky;
+    margin: 0.4rem;
+    display: flex;
+    height: 5rem;
+    background-color: var(--sup);
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 15px black;
+}
+nav > img {
+    height: 70%;
+}
+.navbtn {
+    border: #00d6ff 2px solid;
+    box-shadow: 0 0 8px var(--acc-1);
+    padding: 0.6rem;
+    border-radius: 8px;
+}
+.navHamb,input#HambCheckbox {
+    display: none;
+}
+/* Aside e temas */
+aside {
+    position: absolute;
+    margin-right: 0.4rem;
+    background-color: var(--sup);
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 15px black;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+/* Main e informações */
+main {
+    padding: 1.5rem;
+}
+main > h1 {
+    margin-top: 1rem;
+    font-family: "Audiowide", sans-serif;
+    font-size: 2.2rem;
+    justify-self: center;
+    margin-bottom: 1.5rem;
+}
+main > h1::after {
+    content: '';
+    position: relative;
+    display: block;
+    border: #fff 2px solid;
+    width: 100%;
+}
+main > h3 {
+    justify-self: center;
+    margin-bottom: 1rem;
+}
+/* Tablets */
+@media (min-width: 768px) {
+    .navHamb {
+        display: block;
+        height: 50%;
+        aspect-ratio: 1/1;
+        align-content: center;
+    }
+    .hambContainter {
+        width: 100%;
+        width: 100%;
+    }
+    .hambLines {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 5px;
+        background-color: var(--neon);
+        transition: 2s ease;
+    }
+    .hambLines::before,
+    .hambLines::after   {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: var(--neon);
+        transition: 1s ease;
+    }
+    .hambLines::before {
+        top: -13px;
+    }
+    .hambLines::after {
+        bottom: -13px;
+    }
+    #HambCheckbox:checked ~ label .hambLines {
+        background-color: transparent;
+        transition: 0.5s ease;
+    }
+    #HambCheckbox:checked ~ label .hambLines::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+        transition: 1s ease;
+    }
+    #HambCheckbox:checked ~ label .hambLines::before {
+        top: 0;
+        transform: rotate(45deg);
+        transition: 1s ease;
+    }
+    body:has(#HambCheckbox:checked) aside {
+        opacity: 1;
+        transition: 1s ease;
+    }
+}
+/* Desktop */
+@media (min-width: 1024px){
+
+}

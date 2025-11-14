@@ -21,6 +21,7 @@ body {
 /* Barra de navegação */
 nav {
     position: sticky;
+    top: 0.4rem;
     margin: 0.4rem;
     display: flex;
     height: 5rem;
@@ -29,6 +30,7 @@ nav {
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 0 15px black;
+    z-index: 1;
 }
 nav > img {
     height: 70%;
@@ -38,6 +40,7 @@ nav > img {
     box-shadow: 0 0 8px var(--acc-1);
     padding: 0.6rem;
     border-radius: 8px;
+    cursor: pointer;
 }
 .navHamb,input#HambCheckbox {
     display: none;
@@ -75,7 +78,7 @@ main > h1::after {
     border: #fff 2px solid;
     width: 100%;
 }
-main > h3 {
+main > h2 {
     justify-self: center;
     margin-bottom: 1rem;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +11,11 @@
 </head>
 <body>
     <nav>
-        <img src="./medias/logoProject.png" alt="Logo LP">
+        <input type="checkbox" id="HambCheckbox">
+        <img src="./medias/logoProject.png" class="navLogo" alt="Logo LP" draggable="false">
         <div class="navbtn">Home</div>
         <div class="navbtn">About us</div>
         <div class="navbtn">Contact</div>
-        <input type="checkbox" id="HambCheckbox">
         <label for="HambCheckbox" class="navHamb navbtn">
             <div class="hambContainter">
                 <span class="hambLines"></span>
@@ -23,7 +23,16 @@
         </label>
     </nav>
     <aside>
-        <div></div>
+        <div>
+            <input type="checkbox" id="themeChanger">
+            <div class="navbtn">Home</div>
+            <div class="navbtn">About us</div>
+            <div class="navbtn">Contact</div>
+            <label for="themeChanger" class="navbtn">
+                <div class="themeChangerBox"></div>
+            </label>
+
+        </div>
     </aside>
     <main>
         <h1>LP Corporation</h1>
@@ -46,5 +55,6 @@
         <br>
         <h3>Tráfego pago — estratégia e gestão de anúncios para alcançar o público certo.</h3>
     </main>
+    <script src="scriptPao.js"></script>
 </body>
 </html>

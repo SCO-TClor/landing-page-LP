@@ -1,10 +1,23 @@
-:root {
+:root[data-theme='dark'] {
     --bg: #071226;
     --sup: #0f1b2b;
     --muted-sup: #0c1622;
     --neon: #00d6ff;
+    --neon-transp: #00d6ff7d;
     --acc-1: #8b5cf6;
     --acc-2: #ff5ca8;
+    --textC: #ffffff;
+}
+:root[data-theme='light'] {
+    --bg: #9fbbee;
+    --sup: #556e9c;
+    --muted-sup: #485c73;
+    --neon: #000000;
+    --neon-transp: #400f857d;
+    --acc-1: #8b5cf6;
+    --acc-2: #ff5ca8;
+    --textC: #000000;
+    transition: 2s ease;
 }
 * {
     margin: 0;
@@ -16,7 +29,21 @@ body {
     height: 100svh;
     height: 100dvh;
     background-color: var(--bg);
-    color: #fff;
+    color: var(--textC);
+    overflow-x: hidden;
+    transition: 1s ease;
+}
+body::-webkit-scrollbar {
+    width: 13px;
+}
+body::-webkit-scrollbar-track {
+    background-color: var(--bg);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: var(--neon-transp) 2px solid;
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--neon);
 }
 /* Barra de navegação */
 nav {
@@ -31,34 +58,128 @@ nav {
     justify-content: space-around;
     box-shadow: 0 0 15px black;
     z-index: 1;
+    transition: 1s ease;
 }
-nav > img {
+nav > img.navLogo {
     height: 70%;
+    background-color: #0f1b2b;
+    border: var(--neon) 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 4px var(--neon);
 }
 .navbtn {
-    border: #00d6ff 2px solid;
+    border: var(--neon) 2px solid;
+    background-color: var(--muted-sup);
     box-shadow: 0 0 8px var(--acc-1);
     padding: 0.6rem;
     border-radius: 8px;
     cursor: pointer;
+    transform: translateY(0);
+    transition: 1s ease;
 }
 .navHamb,input#HambCheckbox {
     display: none;
 }
+.navHamb {
+    display: block;
+    height: 50%;
+    aspect-ratio: 1/1;
+    align-content: center;
+}
+.hambContainter {
+    width: 100%;
+    width: 100%;
+}
+.hambLines {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: var(--neon);
+    transition: 2s ease;
+}
+.hambLines::before,
+.hambLines::after   {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: var(--neon);
+    transition: 1s ease;
+}
+.hambLines::before {
+    top: -13px;
+}
+.hambLines::after {
+    bottom: -13px;
+}
+#HambCheckbox:checked ~ label .hambLines {
+    background-color: transparent;
+    transition: 0.5s ease;
+}
+#HambCheckbox:checked ~ label .hambLines::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: 1s ease;
+}
+#HambCheckbox:checked ~ label .hambLines::before {
+    top: 0;
+    transform: rotate(45deg);
+    transition: 1s ease;
+}
+#HambCheckbox:checked ~ div.navbtn {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: 1s ease;
+}
+body:has(#HambCheckbox:checked) aside {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 1s ease;
+}
 /* Aside e temas */
 aside {
-    position: absolute;
+    position: fixed;
+    display: flex;
     margin-right: 0.4rem;
     background-color: var(--sup);
     border-radius: 8px;
-    align-items: center;
-    justify-content: space-around;
     box-shadow: 0 0 15px black;
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 50vh;
+    top: 5.8rem;
     right: 0;
     opacity: 0;
-    transition: opacity 1s ease;
+    transform: translateX(50px);
+    justify-content: center;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 1;
+}
+aside > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-width: fit-content;
+    justify-content: space-around;
+    align-items: center;
+}
+aside .navbtn {
+    text-align: center;
+}
+aside input#themeChanger {
+    display: none;
+}
+aside label {
+    width: 3rem;
+    aspect-ratio: 1/1;
+}
+aside div .themeChangerBox {
+    width: 3rem;
+    aspect-ratio: 1/1;
+    background-color: #000000;
+    clip-path: circle();
 }
 /* Main e informações */
 main {
@@ -75,8 +196,9 @@ main > h1::after {
     content: '';
     position: relative;
     display: block;
-    border: #fff 2px solid;
+    border: var(--textC) 2px solid;
     width: 100%;
+    transition: 1s ease;
 }
 main > h2 {
     justify-self: center;
